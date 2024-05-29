@@ -5,9 +5,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/reserva', [App\Http\Controllers\HomeController::class, 'index'])->name('reservas');
+    Route::resource('reservas', ReservaController::class);
 });
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('reservas', ReservaController::class);
