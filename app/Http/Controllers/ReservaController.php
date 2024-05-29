@@ -33,11 +33,6 @@ class ReservaController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(ReservaRequest $request): RedirectResponse {
-        // $validator = Validation::make(request()->all(), );
-        // if($validator->fails()) {
-        //  return "Já existe uma Reserva para essa Data e Hora";
-        // }
-
         Reserva::create($request->validated());
 
         return Redirect::route('reservas.index')
